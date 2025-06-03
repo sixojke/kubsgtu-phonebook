@@ -29,7 +29,12 @@ func New(cfg *Config, deps *Deps) *Server {
 		deps: deps,
 	}
 
-	s.App.Use(cors.New())
+	s.App.Use(cors.New(cors.Config{
+		AllowOrigins:  "*",
+		AllowMethods:  "GET,POST,HEAD,PUT,DELETE,PATCH,OPTIONS",
+		AllowHeaders:  "Origin, Content-Type, Accept, Authorization",
+		ExposeHeaders: "Content-Length",
+	}))
 
 	// panic recovery
 	s.App.Use(recover.New(recover.Config{
