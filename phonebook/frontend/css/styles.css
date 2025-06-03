@@ -1,0 +1,262 @@
+/* css/styles.css */
+:root {
+    --primary-blue: #0055A5;
+    --secondary-gold: #a600ff;
+    --accent-red: #E63946;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: #f8f9fa;
+    color: #2a2a2a;
+}
+
+.header {
+    background: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    height: 70px;
+    margin-right: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.header-title {
+    color: var(--primary-blue);
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    text-shadow: none;
+}
+
+.header-subtitle {
+    color: var(--accent-red);
+    font-size: 1.1rem;
+    display: block;
+    margin-top: 0.3rem;
+    font-weight: 400;
+}
+
+.decorative-line {
+    height: 3px;
+    background: linear-gradient(
+        90deg, 
+        var(--primary-blue) 0%, 
+        var(--secondary-gold) 50%, 
+        var(--accent-red) 100%
+    );
+    margin: 1rem auto 2rem;
+    width: 85%;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.search-box {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    border: 2px solid var(--primary-blue);
+    border-radius: 30px;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-box:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(0,85,165,0.2);
+    border-color: var(--secondary-gold);
+}
+
+.search-box::placeholder {
+    color: #666;
+    opacity: 0.8;
+}
+
+.contacts-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.contact-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: cardEntrance 0.5s ease-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.contact-icon {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.contact-info {
+    text-align: center;
+}
+
+.contact-name {
+    font-size: 1.3rem;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.contact-position {
+    color: var(--accent-red);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.department-filter {
+    text-align: center;
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    background: white;
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-blue);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.filter-btn:hover {
+    color: white;
+}
+
+.filter-btn:hover::before {
+    opacity: 1;
+}
+
+.filter-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.filter-btn.active {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+@keyframes btnScale {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.filter-btn:active {
+    animation: btnScale 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .logo {
+        margin: 0 0 1rem 0;
+        height: 60px;
+    }
+
+    .header-title {
+        font-size: 1.4rem;
+    }
+
+    .header-subtitle {
+        font-size: 1rem;
+    }
+
+    .decorative-line {
+        width: 90%;
+    }
+
+    .search-box {
+        padding: 1rem 1.5rem;
+    }
+
+    .contacts-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
